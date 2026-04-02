@@ -153,7 +153,7 @@ export default function Home() {
                 <div className="relative h-44 overflow-hidden">
                   <Image 
                     src={item.image} 
-                    alt={item.name} 
+                    alt={`Custom printed ${item.name.toLowerCase()} - High quality packaging by Packmint`} 
                     fill 
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                     className="object-cover transition duration-500 group-hover:scale-105" 
@@ -205,7 +205,7 @@ export default function Home() {
                 <div className="relative h-48 md:h-56">
                   <Image 
                     src={item.image} 
-                    alt={`${item.brand} case study mockup`} 
+                    alt={`${item.brand} - Luxury custom box design and production case study`} 
                     fill 
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     className="object-cover transition duration-500 group-hover:scale-105" 

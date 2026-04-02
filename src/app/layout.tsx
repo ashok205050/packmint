@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { JsonLd } from "@/components/JsonLd";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -10,22 +12,37 @@ const inter = Inter({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://packmint.in";
 
 export const metadata: Metadata = {
-  title: "Packmint | B2B Custom Packaging Partner (Low MOQ 25 Units)",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Packmint | Premium Custom Packaging & Box Manufacturer (Low MOQ 25)",
+    template: "%s | Packmint India",
+  },
   description:
-    "India's leading custom packaging manufacturer for skincare and luxury brands. Get high-quality printed boxes, rigid boxes, and tubes with low MOQ of 25 units. Free mockup and 7-day delivery.",
-  keywords: ["custom packaging india", "skincare packaging manufacturer", "low moq boxes", "luxury box printing", "wholesale packaging suppliers"],
+    "Order custom printed boxes, rigid boxes, and luxury packaging in India. Low MCQ of 25 units, 7-day fast delivery, and free digital mockups for skincare and beauty brands.",
+  keywords: [
+    "custom packaging boxes india",
+    "skincare packaging manufacturer",
+    "low moq custom boxes",
+    "luxury rigid box printing delhi",
+    "custom cosmetic packaging wholesale",
+    "printed corrugated boxes",
+    "premium product boxes",
+  ],
+  authors: [{ name: "Packmint Team" }],
+  creator: "Packmint India",
+  publisher: "Packmint Packaging",
   openGraph: {
-    title: "Packmint | Premium B2B Custom Packaging (India)",
+    title: "Packmint | Custom Packaging & Box Manufacturer (Low MOQ 25)",
     description:
-      "Scale your brand with premium custom packaging. We offer low MOQ (25 units), free technical mockups, and fast nationwide delivery for skincare and luxury brands.",
+      "Scale your skincare brand with premium custom packaging. Low MCQ (25 units), free digital mockups, and fast 7-day delivery nationwide.",
     url: siteUrl,
     siteName: "Packmint India",
     images: [
       {
-        url: `${siteUrl}/images/og-image.png`,
+        url: "/images/hero-premium.png",
         width: 1200,
         height: 630,
-        alt: "Packmint Custom Packaging Solutions",
+        alt: "Packmint Premium Custom Packaging Mockup",
       },
     ],
     locale: "en_IN",
@@ -33,20 +50,30 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Packmint | B2B Custom Packaging Partner",
-    description: "Premium custom packaging with low MOQ of 25 units for skincare brands.",
-    images: [`${siteUrl}/images/og-image.png`],
+    title: "Packmint | Premium Custom Packaging Partner",
+    description: "High-quality custom boxes with low MOQ of 25 units for skincare brands in India.",
+    images: ["/images/hero-premium.png"],
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: "/",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",
+  },
+  verification: {
+    google: "google92f45fb3cda47413",
   },
 };
 
@@ -57,7 +84,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <JsonLd />
+        {children}
+      </body>
     </html>
   );
 }
