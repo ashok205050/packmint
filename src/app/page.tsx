@@ -308,6 +308,39 @@ export default function Home() {
           </StaggerGrid>
         </section>
 
+        <section className="container-px py-16 lg:py-24 bg-[#f9f9f7]/30">
+          <AnimateInView>
+            <h2 className="section-title">Packaging Insights</h2>
+            <p className="mt-2 text-zinc-600">Expert guidance for scaling your brand&apos;s physical presence.</p>
+          </AnimateInView>
+          <StaggerGrid className="mt-12 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                title: "3 Essential Box Structures for Skincare Brands",
+                desc: "From tuck-end to rigid magnetic closures—find the perfect fit for your product's weight and price point.",
+                tag: "Design Guide"
+              },
+              {
+                title: "How to Design for Premium Unboxing",
+                desc: "Discover how matte lamination and UV highlights can transform a simple box into a luxury experience.",
+                tag: "Brand Experience"
+              },
+              {
+                title: "Scaling Production: 25 to 2500 Units",
+                desc: "An insider's look at managing production timelines as your brand grows from startup to scale-up.",
+                tag: "Operations"
+              }
+            ].map((article) => (
+              <article key={article.title} className="flex flex-col group cursor-default">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--primary)] mb-3">{article.tag}</span>
+                <h3 className="text-xl font-semibold text-zinc-900 group-hover:text-[var(--primary)] transition-colors duration-300">{article.title}</h3>
+                <p className="mt-3 text-zinc-600 text-sm leading-relaxed">{article.desc}</p>
+                <div className="mt-5 h-px w-10 bg-zinc-300 group-hover:w-full transition-all duration-500" />
+              </article>
+            ))}
+          </StaggerGrid>
+        </section>
+
         <section id="inquiry" className="container-px py-20 pb-24">
           <AnimateInView className="mb-8 max-w-2xl">
             <h2 className="section-title">Let&apos;s Build Your Packaging</h2>
@@ -332,6 +365,12 @@ export default function Home() {
               Your low MOQ custom packaging partner for skincare and luxury brands.
             </p>
           </div>
+          
+          <nav className="mb-10 flex justify-center gap-8 text-sm font-medium text-zinc-600">
+            <Link href="/privacy" className="hover:text-[var(--primary)] transition">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[var(--primary)] transition">Terms & Conditions</Link>
+          </nav>
+
           <div className="text-center text-sm text-zinc-500">
             <p>© {new Date().getFullYear()} Packmint India — All Rights Reserved</p>
           </div>
