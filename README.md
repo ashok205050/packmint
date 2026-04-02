@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Packmint
 
-## Getting Started
+Production-ready full-stack website for low MOQ custom packaging services targeting skincare startups in India.
 
-First, run the development server:
+### Stack
+
+- Next.js (App Router)
+- MongoDB + Mongoose
+- Tailwind CSS
+- Nodemailer
+- API routes in Next.js
+
+### Features
+
+- Premium, responsive marketing website
+- Inquiry form with validation, loading/error states
+- MongoDB persistence via `Inquiry` model
+- Admin email notification on inquiry submission
+- Protected `/admin` dashboard with inquiry list + delete
+- SEO metadata + OpenGraph
+
+### Project Structure
+
+- `src/app` - routes and API handlers
+- `src/components` - reusable UI/client components
+- `src/models` - Mongoose schemas
+- `src/lib` - db connection, auth, validation, email helpers
+
+### Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Copy environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Add your MongoDB Atlas and SMTP credentials in `.env.local`.
+
+4. Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `POST /api/inquiry` - Validate + save inquiry + send admin email
+- `GET /api/inquiry` - Admin-only inquiry list
+- `DELETE /api/inquiry/:id` - Admin-only delete
+- `POST /api/admin/login` - Sets admin cookie
+- `POST /api/admin/logout` - Clears admin cookie
 
-## Learn More
+### Admin Access
 
-To learn more about Next.js, take a look at the following resources:
+Visit `/admin` and use the password from `ADMIN_PASSWORD`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Strong Admin Auth (JWT Session)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Login verifies `ADMIN_PASSWORD`, then issues a signed JWT session cookie.
+- JWT is `httpOnly`, `sameSite=lax`, secure in production, and expires in 8 hours.
+- Admin API endpoints verify JWT signature + audience/issuer before allowing access.
+- Required envs:
+  - `ADMIN_PASSWORD`
+  - `ADMIN_JWT_SECRET` (long random secret, at least 32 chars)
 
-## Deploy on Vercel
+### Login Rate Limiting
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/api/admin/login` includes server-side brute-force protection.
+- Rate-limit strategy:
+  - 5 failed attempts in 15 minutes -> temporary block
+  - Block duration: 30 minutes
+- Enforcement is persisted in MongoDB, so it works across serverless instances.
+- On successful login, failed-attempt state for the client IP is cleared.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Deploy on Vercel + Mongo Atlas
+
+1. Create a MongoDB Atlas cluster and database user.
+2. In Atlas Network Access, allow Vercel egress (`0.0.0.0/0`) or restricted IP ranges.
+3. Copy your Atlas SRV connection string into `MONGODB_URI`.
+4. In Vercel project settings, add env vars:
+   - `MONGODB_URI`
+   - `ADMIN_PASSWORD`
+   - `ADMIN_JWT_SECRET`
+   - `ADMIN_EMAIL`
+   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
+   - `NEXT_PUBLIC_SITE_URL`
+5. Deploy with Vercel. `vercel.json` already sets API function max duration.
