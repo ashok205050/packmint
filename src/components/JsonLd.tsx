@@ -3,8 +3,8 @@ export function JsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Packmint",
-    "url": "https://packmint.in",
-    "logo": "https://packmint.in/logo.svg",
+    "url": "https://packmint.vercel.app",
+    "logo": "https://packmint.vercel.app/logo.svg",
     "description": "India's leading custom packaging manufacturer for skincare and luxury brands with low MOQ of 25 units.",
     "address": {
       "@type": "PostalAddress",
@@ -21,9 +21,9 @@ export function JsonLd() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Packmint India",
-    "image": "https://packmint.in/logo.svg",
-    "@id": "https://packmint.in",
-    "url": "https://packmint.in",
+    "image": "https://packmint.vercel.app/logo.svg",
+    "@id": "https://packmint.vercel.app",
+    "url": "https://packmint.vercel.app",
     "telephone": "+91-XXXXXXXXXX",
     "address": {
       "@type": "PostalAddress",

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
  
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = "https://packmint.in";
+  const siteUrl = "https://packmint.vercel.app";
   
   return [
     {
