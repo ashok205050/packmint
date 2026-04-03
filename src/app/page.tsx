@@ -14,28 +14,28 @@ export default function Home() {
   ];
 
   const packagingTypes = [
-    { name: "Custom Skincare Boxes (Low MOQ)", desc: "Premium folding cartons tailored to your product size — perfect for serums, creams, oils, and face washes. Designed to elevate shelf presence even in small batches.", image: "/images/hero-box.png" },
-    { name: "Box Structure & Sizing Guidance", desc: "Not sure what size or structure fits your product? We help you choose the right box style — tuck-end, sleeve, drawer, or rigid — based on your product and budget.", image: "/images/supplier-process.png" },
-    { name: "Luxury Print Finishes", desc: "Matte lamination, soft-touch coating, foil stamping, embossing, UV highlights — we help you choose finishes that match your brand identity.", image: "/images/supplier-finishes.png" },
-    { name: "Packaging for Launch Kits & Gift Sets", desc: "Custom packaging solutions for skincare launch kits, PR boxes, and combo sets — built for Instagram-worthy unboxing experiences.", image: "/images/supplier-lifestyle.png" },
+    { name: "Custom Skincare Boxes (Low MOQ)", desc: "Premium folding cartons tailored to your product size — perfect for serums, creams, oils, and face washes. Designed to elevate shelf presence even in small batches.", image: "/images/v2-serum.png" },
+    { name: "Box Structure & Sizing Guidance", desc: "Not sure what size or structure fits your product? We help you choose the right box style — tuck-end, sleeve, drawer, or rigid — based on your product and budget.", image: "/images/v2-process.png" },
+    { name: "Luxury Print Finishes", desc: "Matte lamination, soft-touch coating, foil stamping, embossing, UV highlights — we help you choose finishes that match your brand identity.", image: "/images/v2-foil.png" },
+    { name: "Packaging for Launch Kits & Gift Sets", desc: "Custom packaging solutions for skincare launch kits, PR boxes, and combo sets — built for Instagram-worthy unboxing experiences.", image: "/images/v2-flatlay.png" },
   ];
   const caseStudies = [
     { 
       brand: "Launch-Ready Packaging for First-Time Skincare Founders", 
       desc: "We helped emerging skincare brands move from product formulation to shelf-ready packaging with the right box size, premium finishes, and low MOQ production.", 
-      image: "/images/hero-premium.png",
+      image: "/images/v2-hero-collection.png",
       includes: ["Box structure consultation", "Print-ready design setup", "Small-batch production support"]
     },
     { 
       brand: "From Concept to Courier", 
       desc: "End-to-end packaging guidance — from dieline setup and mockup creation to final production and delivery. Ideal for founders who don’t have in-house design or packaging knowledge.", 
-      image: "/images/supplier-variety.png",
+      image: "/images/v2-process.png",
       includes: ["Free digital mockup", "Design adjustments", "Production coordination", "Delivery tracking"]
     },
     { 
       brand: "Luxury Packaging Upgrades", 
       desc: "For brands ready to elevate their packaging with foil stamping, embossing, soft-touch matte, or UV highlights — without large factory MOQs.", 
-      image: "/images/supplier-finishes.png",
+      image: "/images/v2-foil.png",
       includes: ["Finish recommendation", "Budget planning", "Small-batch luxury production"]
     },
   ];
@@ -60,6 +60,21 @@ export default function Home() {
       question: "How soon can I receive my packaging?",
       answer: "Typical turnaround is 7-10 days after final design approval.",
     },
+  ];
+
+  const skincareSizes = [
+    { name: "15ml Dropper Bottles", size: "9 x 3.5 x 3.5 cm" },
+    { name: "30ml Serum Bottles", size: "10 x 4 x 4 cm" },
+    { name: "50g Cream Jars", size: "6 x 6 x 6 cm" },
+    { name: "100ml Face Wash / Tubes", size: "15 x 5 x 4 cm" },
+    { name: "Skincare Combo / Gift Kits", size: "Sizes vary based on content" },
+  ];
+
+  const galleryImages = [
+    { src: "/images/v2-serum.png", alt: "Minimal serum box mockup", span: "col-span-2 row-span-2" },
+    { src: "/images/v2-jar.png", alt: "Cream jar with matching box", span: "col-span-1 row-span-1" },
+    { src: "/images/v2-matte.png", alt: "Matte finish carton close-up", span: "col-span-1 row-span-1" },
+    { src: "/images/v2-flatlay.png", alt: "Skincare flatlay packaging aesthetic", span: "col-span-2 row-span-1" },
   ];
 
   return (
@@ -115,7 +130,7 @@ export default function Home() {
             <AnimateInView delay={0.15}>
               <div className="relative h-[320px] overflow-hidden rounded-[2rem] border border-white/70 bg-white/50 shadow-[0_30px_80px_rgba(0,0,0,0.08)] backdrop-blur-md md:h-[420px] lg:h-[500px]">
                 <Image 
-                  src="/images/hero-premium.png" 
+                  src="/images/v2-hero-collection.png" 
                   alt="Premium skincare packaging mockup featuring luxury boxes and bottles" 
                   fill 
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
@@ -166,6 +181,26 @@ export default function Home() {
               </article>
             ))}
           </StaggerGrid>
+        </section>
+
+        <section className="container-px py-16 lg:py-24 bg-[var(--surface)]">
+          <AnimateInView className="mb-12">
+            <h2 className="section-title">Common Skincare Box Sizes We Work With</h2>
+            <p className="mt-2 text-zinc-600">Standard dimensions for popular product formats.</p>
+          </AnimateInView>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {skincareSizes.map((item) => (
+              <div key={item.name} className="flex flex-col rounded-2xl border border-zinc-200/60 bg-white p-6 transition duration-300 hover:shadow-md">
+                <span className="text-sm font-semibold text-zinc-900">{item.name}</span>
+                <span className="mt-2 text-xs font-medium tracking-wide text-[var(--primary)]">Approx size: {item.size}</span>
+              </div>
+            ))}
+            <div className="flex flex-col justify-center rounded-2xl border-2 border-dashed border-zinc-200 p-6 text-center">
+              <p className="text-sm font-medium text-zinc-500">
+                All box dimensions are <span className="text-zinc-900 font-semibold">fully customizable</span> based on your exact product measurements.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section className="container-px py-16 lg:py-24">
@@ -230,6 +265,37 @@ export default function Home() {
           </StaggerGrid>
         </section>
 
+        <section className="container-px py-16 lg:py-24 bg-white">
+          <AnimateInView className="mb-12 text-center">
+            <h2 className="section-title">Niche Skincare Packaging Showcase</h2>
+            <p className="mt-2 text-zinc-600">Aesthetic design meets functional protection.</p>
+          </AnimateInView>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[250px]">
+            {galleryImages.map((img, i) => (
+              <div key={i} className={`relative overflow-hidden rounded-3xl ${img.span} border border-zinc-100 group`}>
+                <Image 
+                  src={img.src} 
+                  alt={img.alt} 
+                  fill 
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+            <div className="relative overflow-hidden rounded-3xl col-span-2 row-span-1 border border-zinc-100 group">
+              <Image 
+                src="/images/v2-foil.png" 
+                alt="Box with foil stamping preview" 
+                fill 
+                className="object-cover transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          </div>
+        </section>
+
         <section className="container-px py-16 lg:py-24 bg-[#f9f9f7]/50">
           <AnimateInView>
             <div className="mx-auto max-w-4xl text-center">
@@ -283,7 +349,7 @@ export default function Home() {
               </div>
               <div className="absolute inset-0 -z-0 opacity-[0.03] mix-blend-multiply">
                 <Image 
-                  src="/images/supplier-lifestyle.png" 
+                  src="/images/v2-flatlay.png" 
                   alt="Premium skincare packaging backdrop" 
                   fill 
                   sizes="(max-width: 1200px) 100vw, 1200px"
